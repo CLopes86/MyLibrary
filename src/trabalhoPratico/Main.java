@@ -28,7 +28,7 @@ public class Main {
                      char opcaoVisualizar = apresentarSubMenuVisualizar();
                      switch (opcaoVisualizar){
                          case 'T':
-                             visualizarTodos(titulo, autor, paginasLidas, emprestado, nLivros);
+                             visualizarTodos(titulo, autor, paginas, paginasLidas, emprestado, nLivros);
                              break;
 
                          case 'L':
@@ -77,27 +77,57 @@ public class Main {
          }while (opcao != 'S');
 
      }
+    public static void visualizarTodos(String[] titulo, String[] autor, int[] paginas, int[] paginasLidas, boolean[] emprestado, int nLivros) {
+         System.out.println("Todos os livros:");
+         for (int i = 0; i < nLivros; i++){
+             System.out.println("Titulo: " + titulo[i] + ", Autor: " + autor[i] +  ", Paginas: " + paginas[i] + ", Paginas lidas: "  + paginasLidas[i] + ", Emprestado: " + emprestado[i]);
+         }
+    }
+    private static void visualizarLeitura(String[] titulo, String[] autor, int[] paginas, int[] paginasLidas, boolean[] emprestado, int nLivros) {
+         System.out.println("Livros em Leitura:");
+         for (int i = 0; i < nLivros; i++){
+             if (paginasLidas[i] > 0 && paginasLidas[i] < paginas[i]){
+               System.out.println("Titulo: " + titulo[i] + ", Autor: " + autor[i] + ", Paginas: " + paginas[i] + ", Paginas lidas: " + paginasLidas[i] + ", Emprestado: " +emprestado[i]);
+             }
+         }
+    }
+    private static void visualizarTerminados(String[] titulo, String[] autor, int[] paginas, int[] paginasLidas, boolean[] emprestado, int nLivros) {
+         System.out.println("Livros terminados:");
+         for (int i = 0; i < nLivros; i++)
+             if (paginasLidas[i] == paginas[i]){
+                 System.out.println("Titulo: " + titulo[i] + ", Autor: " + autor[i] + ", Paginas: " + paginas[i] + ", Paginas lidas: " + paginasLidas[i] + ", Emprestado: " +emprestado[i]);
+             }
+    }
+    private static void visualizarPorLer(String[] titulo, String[] autor, int[] paginas, int[] paginasLidas, boolean[] emprestado, int nLivros) {
+         System.out.println("Livros por Ler:");
+         for (int i = 0; i < nLivros; i++){
+             if (paginasLidas[i] == 0){
+                 System.out.println("Titulo: " + titulo[i] + ", Autor: " + autor[i] + ", Paginas: " + paginas[i] + ", Paginas lidas: " + paginasLidas[i] + ", Emprestado: " +emprestado[i]);
+
+             }
+        }
+    }
 
     private static void visualizarEmprestados(String[] titulo, String[] autor, int[] paginas, int[] paginasLidas, boolean[] emprestado, int nLivros) {
+         System.out.println("Livros emprestados:");
+         for (int i = 0; i < nLivros; i++){
+             if (emprestado[i]){
+                 System.out.println("Titulo: " + titulo[i] + ", Autor: " + autor[i] + ", Paginas: " + paginas[i] + ", Paginas lidas: " + paginasLidas[i] + ", Emprestado: " +emprestado[i]);
+             }
+         }
     }
 
-    private static void visualizarPorLer(String[] titulo, String[] autor, int[] paginas, int[] paginasLidas, boolean[] emprestado, int nLivros) {
-    }
 
-    private static void visualizarTerminados(String[] titulo, String[] autor, int[] paginas, int[] paginasLidas, boolean[] emprestado, int nLivros) {
-    }
 
-    private static void visualizarLeitura(String[] titulo, String[] autor, int[] paginas, int[] paginasLidas, boolean[] emprestado, int nLivros) {
-    }
 
-    private static void visualizarTodos(String[] titulo, String[] autor, int[] paginasLidas, boolean[] emprestado, int nLivros) {
-    }
+
+
+
 
     private static void apresentarSubMenuLer() {
     }
 
-    private static void apresentarSubMenuEditar() {
-    }
+
 
     public static char apresentarSubMenuVisualizar() {
          Scanner input = new Scanner(System.in);
@@ -113,6 +143,21 @@ public class Main {
          return opcao;
 
 
+    }
+
+    private static char apresentarSubMenuEditar() {
+         Scanner input1 = new Scanner(System.in);
+         System.out.println("Menu Editar");
+        System.out.println("Adicionar (l)ivro ");
+        System.out.println("Procurar livro por (t)itulo");
+        System.out.println("Procurar livro por (a)utor");
+        System.out.println("Apagar livro por (p)osição");
+        System.out.println("Apagar to(d)os os livros de um autor");
+        System.out.println("(E)ditar livro");
+        System.out.println("(V)oltar");
+        System.out.println("Escolha uma opção: ");
+        char opca01 = Character.toUpperCase(input1.next().charAt(0));
+        return opca01;
     }
 
 
